@@ -40,12 +40,12 @@ RUN apt update && apt upgrade -y \
     pdo_mysql \
     xsl \
     gd \
-    imap \
     intl \
     zip \
     sockets \
     php-memcached-dev/php-memcached@v3.4.0 \
     phpredis/phpredis@6.3.0 \
+    php/pecl-networking-imap@1.0.3 \
     && docker-php-source delete \
     && apt remove -y g++ wget \
     && apt autoremove --purge -y && apt autoclean -y && apt clean -y \
