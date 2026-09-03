@@ -44,8 +44,9 @@ RUN apt update && apt upgrade -y \
     zip \
     sockets \
     php-memcached-dev/php-memcached@v3.4.0 \
-    https://pecl.php.net/get/redis-6.3.0.tgz \
     php/pecl-mail-imap@1.0.3 \
+    && git clone --depth 1 --recursive -b 6.3.0 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis \
+    && docker-php-ext-install redis \
     && docker-php-source delete \
     && apt remove -y g++ wget \
     && apt autoremove --purge -y && apt autoclean -y && apt clean -y \
