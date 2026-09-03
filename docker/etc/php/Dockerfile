@@ -16,7 +16,6 @@ RUN apt update && apt upgrade -y \
     libjpeg62-turbo-dev \
     libkrb5-dev \
     libldap2-dev \
-    libldb-dev \
     libmagickwand-dev \
     libmcrypt-dev \
     libmemcached-dev \
@@ -45,7 +44,6 @@ RUN apt update && apt upgrade -y \
     intl \
     zip \
     sockets \
-    xmlrpc \
     memcached \
     redis \
     imagick \
