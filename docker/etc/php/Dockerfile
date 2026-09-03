@@ -46,7 +46,6 @@ RUN apt update && apt upgrade -y \
     sockets \
     memcached \
     redis \
-    imagick \
     && docker-php-source delete \
     && apt remove -y g++ wget \
     && apt autoremove --purge -y && apt autoclean -y && apt clean -y \
