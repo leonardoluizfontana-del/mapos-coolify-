@@ -7,6 +7,7 @@ COPY --from=ghcr.io/mlocati/php-extension-installer /usr/bin/install-php-extensi
 RUN apt update && apt upgrade -y \
     && apt install -y \
     g++ \
+    git \
     libbz2-dev \
     libc-client-dev \
     libcurl4-gnutls-dev \
