@@ -44,7 +44,7 @@ RUN apt update && apt upgrade -y \
     zip \
     sockets \
     php-memcached-dev/php-memcached@v3.4.0 \
-    phpredis/phpredis@6.3.0 \
+    https://pecl.php.net/get/redis-6.3.0.tgz \
     php/pecl-mail-imap@1.0.3 \
     && docker-php-source delete \
     && apt remove -y g++ wget \
