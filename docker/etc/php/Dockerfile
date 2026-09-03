@@ -45,7 +45,7 @@ RUN apt update && apt upgrade -y \
     zip \
     sockets \
     memcached \
-    redis \
+    redis-6.2.0 \
     && docker-php-source delete \
     && apt remove -y g++ wget \
     && apt autoremove --purge -y && apt autoclean -y && apt clean -y \
