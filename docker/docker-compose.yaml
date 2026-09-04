@@ -11,6 +11,8 @@ services:
     container_name: nginx
     volumes:
       - "./:/var/www/html"
+    expose:
+      - "${NGINX_PORT}"
     ports:
       - "${NGINX_PORT}:${NGINX_PORT}"
     env_file:
