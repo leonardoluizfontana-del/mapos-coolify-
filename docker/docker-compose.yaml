@@ -29,6 +29,7 @@ services:
       - "./:/var/www/html"
   composer:
     container_name: composer
+    restart: "no"
     build:
       context: ./etc/composer
       dockerfile: Dockerfile
