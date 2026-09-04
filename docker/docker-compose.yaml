@@ -5,8 +5,8 @@
 #
 #Permission
 #mkdir -p /data/coolify/applications/<UUID>/updates
-#chmod -R 775 /data/coolify/applications/<UUID>/updates
-#chown -R 33:33 /data/coolify/applications/<UUID>/updates
+#chmod -R 775 /data/coolify/applications/<UUID>
+#chown -R 33:33 /data/coolify/applications/<UUID>
 #
 #https://coolify.com/project/.../application/ajqs9c6vepe3sddxdof48ktq
 #UUID = ajqs9c6vepe3sddxdof48ktq
