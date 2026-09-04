@@ -2,6 +2,15 @@
 #Base directory: /
 #Docker compose location: /docker/docker-compose.yaml
 #Branch: Main
+#
+#Permission
+#mkdir -p /data/coolify/applications/<UUID>/updates
+#chmod -R 775 /data/coolify/applications/<UUID>/updates
+#chown -R 33:33 /data/coolify/applications/<UUID>/updates
+#
+#https://coolify.com/project/.../application/ajqs9c6vepe3sddxdof48ktq
+#UUID = ajqs9c6vepe3sddxdof48ktq
+#
 version: '3.9'
 services:
   nginx:
