@@ -310,7 +310,6 @@ $totalProdutos = 0; ?>
                                     <tr class="table-secondary">
                                         <th class="text-center">STATUS</th>
                                         <th class="text-center">DATA INICIAL</th>
-                                        <th class="text-center">DATA FINAL</th>
                                         <?php if ($result->garantia) : ?>
                                             <th class="text-center">GARANTIA</th>
                                         <?php endif; ?>
@@ -323,7 +322,6 @@ $totalProdutos = 0; ?>
                                     <tr>
                                         <td class="text-center"><?= $result->status ?></td>
                                         <td class="text-center"><?= date('d/m/Y', strtotime($result->dataInicial)) ?></td>
-                                        <td class="text-center"><?= $result->dataFinal ? date('d/m/Y', strtotime($result->dataFinal)) : '' ?></td>
                                         <?php if ($result->garantia) : ?>
                                             <td class="text-center"><?= $result->garantia . ' dia(s)' ?></td>
                                         <?php endif; ?>
@@ -511,7 +509,6 @@ $totalProdutos = 0; ?>
                     <div class="detalhes">
                         <span>Data inicial: <b><?= date('d/m/Y', strtotime($result->dataInicial)) ?></b></span>
                         <span>ORDEM DE SERVIÇO <b>#<?= str_pad($result->idOs, 4, 0, STR_PAD_LEFT) ?></b></span>
-                        <span>Data final: <b><?= $result->dataFinal ? date('d/m/Y', strtotime($result->dataFinal)) : '' ?></b></span>
                     </div>
                     <div class="assinaturas">
                         <span>Assinatura do cliente</span>
