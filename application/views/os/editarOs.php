@@ -136,6 +136,20 @@
                                             <input id="garantias_id" class="span12" type="hidden" name="garantias_id" value="<?php echo $result->garantias_id ?>" />
                                         </div>
                                     </div>
+                                    <div class="span12" style="padding: 1%; margin-left: 0">
+                                        <div class="span4">
+                                            <label for="marca">Marca</label>
+                                            <input id="marca" class="span12" type="text" name="marca" value="<?php echo $result->marca ?>" />
+                                        </div>
+                                        <div class="span4">
+                                            <label for="modelo">Modelo</label>
+                                            <input id="modelo" class="span12" type="text" name="modelo" value="<?php echo $result->modelo ?>" />
+                                        </div>
+                                        <div class="span4">
+                                            <label for="numero_serie">Nº de Série</label>
+                                            <input id="numero_serie" class="span12" type="text" name="numero_serie" value="<?php echo $result->numero_serie ?>" />
+                                        </div>
+                                    </div>
                                     <div class="span6" style="padding: 1%; margin-left: 0">
                                         <label for="descricaoProduto"><h4>Descrição Produto/Serviço</h4></label>
                                         <textarea class="span12 editor" name="descricaoProduto" id="descricaoProduto" cols="30" rows="5"><?php echo $result->descricaoProduto ?></textarea>
