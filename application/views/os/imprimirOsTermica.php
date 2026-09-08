@@ -156,6 +156,15 @@ if (!empty($result->cidade) || !empty($result->estado) || !empty($result->cep)) 
                                     </tr>
                                 <?php } ?>
 
+                                <?php if ($result->marca != null || $result->modelo != null || $result->numero_serie != null) { ?>
+                                    <tr>
+                                        <td colspan="5">
+                                            <?php if ($result->marca != null) { ?><b>Marca: </b><?php echo printSafeHtml($result->marca) ?> <?php } ?>
+                                            <?php if ($result->modelo != null) { ?><b>Modelo: </b><?php echo printSafeHtml($result->modelo) ?> <?php } ?>
+                                            <?php if ($result->numero_serie != null) { ?><b>Nº Série: </b><?php echo printSafeHtml($result->numero_serie) ?><?php } ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                                 <?php if ($result->descricaoProduto != null) { ?>
                                     <tr>
                                         <td colspan="5"><b>Descrição: </b><?php echo printSafeHtml($result->descricaoProduto) ?></td>
@@ -371,6 +380,15 @@ if (!empty($result->cidade) || !empty($result->estado) || !empty($result->cep)) 
                                                         <b>Garantia: </b><?php echo $result->garantia . ' dia(s)'; ?>
                                                     <?php } ?>
                                                 </td>
+                                        <?php } ?>
+                                        <?php if ($result->marca != null || $result->modelo != null || $result->numero_serie != null) { ?>
+                                            <tr>
+                                                <td colspan="5">
+                                                    <?php if ($result->marca != null) { ?><b>Marca: </b><?php echo printSafeHtml($result->marca) ?> <?php } ?>
+                                                    <?php if ($result->modelo != null) { ?><b>Modelo: </b><?php echo printSafeHtml($result->modelo) ?> <?php } ?>
+                                                    <?php if ($result->numero_serie != null) { ?><b>Nº Série: </b><?php echo printSafeHtml($result->numero_serie) ?><?php } ?>
+                                                </td>
+                                            </tr>
                                         <?php } ?>
                                         <?php if ($result->descricaoProduto != null) { ?>
                                             <tr>
