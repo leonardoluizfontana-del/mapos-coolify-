@@ -159,6 +159,16 @@ if (!empty($result->cidade) || !empty($result->estado) || !empty($result->cep)) 
                                     </tr>
                                 <?php } ?>
 
+                                                                <?php if ($result->marca != null || $result->modelo != null || $result->numero_serie != null) { ?>
+                                    <tr>
+                                        <td colspan="5">
+                                            <?php if ($result->marca != null) { ?><b>MARCA: </b><?= printSafeHtml($result->marca) ?>&nbsp;&nbsp;<?php } ?>
+                                            <?php if ($result->modelo != null) { ?><b>MODELO: </b><?= printSafeHtml($result->modelo) ?>&nbsp;&nbsp;<?php } ?>
+                                            <?php if ($result->numero_serie != null) { ?><b>Nº DE SÉRIE: </b><?= printSafeHtml($result->numero_serie) ?><?php } ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+
                                 <?php if ($result->descricaoProduto != null) { ?>
                                     <tr>
                                         <td colspan="5">
