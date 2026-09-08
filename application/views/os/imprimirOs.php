@@ -358,6 +358,15 @@ $totalProdutos = 0; ?>
                         </div>
                     </div>
 
+                    <?php if ($result->marca || $result->modelo || $result->numero_serie) : ?>
+                        <div class="subtitle">EQUIPAMENTO</div>
+                        <div class="dados">
+                            <?php if ($result->marca) : ?><b>Marca:</b> <?= printSafeHtml($result->marca) ?><br /><?php endif; ?>
+                            <?php if ($result->modelo) : ?><b>Modelo:</b> <?= printSafeHtml($result->modelo) ?><br /><?php endif; ?>
+                            <?php if ($result->numero_serie) : ?><b>Nº de Série:</b> <?= printSafeHtml($result->numero_serie) ?><?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+
                     <?php if ($result->descricaoProduto) : ?>
                         <div class="subtitle">DESCRIÇÃO</div>
                         <div class="dados">
