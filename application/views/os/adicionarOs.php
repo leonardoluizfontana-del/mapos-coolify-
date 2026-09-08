@@ -72,6 +72,20 @@
                                             <input id="garantias_id" class="span12" type="hidden" name="garantias_id" value="" />
                                         </div>
                                     </div>
+                                    <div class="span12" style="padding: 1%; margin-left: 0">
+                                        <div class="span4">
+                                            <label for="marca">Marca</label>
+                                            <input id="marca" class="span12" type="text" name="marca" value="" />
+                                        </div>
+                                        <div class="span4">
+                                            <label for="modelo">Modelo</label>
+                                            <input id="modelo" class="span12" type="text" name="modelo" value="" />
+                                        </div>
+                                        <div class="span4">
+                                            <label for="numero_serie">Nº de Série</label>
+                                            <input id="numero_serie" class="span12" type="text" name="numero_serie" value="" />
+                                        </div>
+                                    </div>
                                     <div class="span6" style="padding: 1%; margin-left: 0">
                                         <label for="descricaoProduto">
                                             <h4>Descrição Produto/Serviço</h4>
