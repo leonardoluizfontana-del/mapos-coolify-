@@ -6,7 +6,71 @@
   select {
     width: 70px;
   }
+
+  /* ===== Filtro de status por checkbox ===== */
+  .filtro-status-wrap { position: relative; }
+  #btn-filtro-status {
+    width: 100%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 30px;
+  }
+  .painel-status {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top: 32px;
+    left: 0;
+    min-width: 230px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 8px 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .18);
+  }
+  .painel-status.aberto { display: block; }
+  .painel-status label {
+    display: block;
+    margin: 0 0 4px;
+    font-weight: normal;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .painel-status label input { margin: 0 6px 0 0; vertical-align: middle; }
+  .painel-status .divisor { margin: 6px 0; border-top: 1px solid #eee; }
 </style>
+<?php
+// Lista central de status e suas cores. Para criar um novo status,
+// basta acrescentar uma linha aqui (e nos selects de adicionar/editar OS).
+$statusCores = [
+    'Aberto'             => '#00cd00',
+    'Orçamento'          => '#CDB380',
+    'Negociação'         => '#AEB404',
+    'Aprovado'           => '#808080',
+    'Aguardando Peças'   => '#FF7F00',
+    'Em Andamento'       => '#436eee',
+    'Finalizado'         => '#256',
+    'Faturado'           => '#B266FF',
+    'Cancelado'          => '#CD0000',
+    'Descarte'           => '#795548',
+    'Recusado'           => '#e91e63',
+    'Recusado/Devolvido' => '#9c27b0',
+    'Garantia'           => '#009688',
+];
+
+// Status marcados pelo usuário no filtro (aceita array ou valor único).
+$statusSelecionados = $this->input->get('status');
+if (! is_array($statusSelecionados)) {
+    $statusSelecionados = ($statusSelecionados === null || $statusSelecionados === '') ? [] : [$statusSelecionados];
+}
+$statusSelecionados = array_filter($statusSelecionados, function ($s) {
+    return $s !== null && $s !== '';
+});
+?>
 <div class="new122">
     <div class="widget-title" style="margin: -20px 0 0">
             <span class="icon">
@@ -27,20 +91,22 @@
             <div class="span3">
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome do cliente a pesquisar" class="span12" value="<?=set_value('pesquisa')?>">
             </div>
-            <div class="span2">
-                <select name="status" id="" class="span12">
-                    <option value="">Selecione status</option>
-                    <option value="Aberto" <?=$this->input->get('status') == 'Aberto' ? 'selected' : ''?>>Aberto</option>
-                    <option value="Faturado" <?=$this->input->get('status') == 'Faturado' ? 'selected' : ''?>>Faturado</option>
-                    <option value="Negociação" <?=$this->input->get('status') == 'Negociação' ? 'selected' : ''?>>Negociação</option>
-                    <option value="Em Andamento" <?=$this->input->get('status') == 'Em Andamento' ? 'selected' : ''?>>Em Andamento</option>
-                    <option value="Orçamento" <?=$this->input->get('status') == 'Orçamento' ? 'selected' : ''?>>Orçamento</option>
-                    <option value="Finalizado" <?=$this->input->get('status') == 'Finalizado' ? 'selected' : ''?>>Finalizado</option>
-                    <option value="Cancelado" <?=$this->input->get('status') == 'Cancelado' ? 'selected' : ''?>>Cancelado</option>
-                    <option value="Aguardando Peças" <?=$this->input->get('status') == 'Aguardando Peças' ? 'selected' : ''?>>Aguardando Peças</option>
-                    <option value="Aprovado" <?=$this->input->get('status') == 'Aprovado' ? 'selected' : ''?>>Aprovado</option>
-                </select>
-
+            <div class="span2 filtro-status-wrap">
+                <button type="button" id="btn-filtro-status" class="btn btn-mini">
+                    <i class='bx bx-filter-alt'></i>
+                    <span id="label-filtro-status">Selecione status</span>
+                    <span class="caret" style="float:right;margin-top:8px"></span>
+                </button>
+                <div id="painel-status" class="painel-status">
+                    <label><input type="checkbox" id="status-marcar-todos"> <b>Marcar todos</b></label>
+                    <div class="divisor"></div>
+                    <?php foreach (array_keys($statusCores) as $statusItem) { ?>
+                        <label>
+                            <input type="checkbox" name="status[]" class="chk-status" value="<?= html_escape($statusItem) ?>" <?= in_array($statusItem, $statusSelecionados) ? 'checked' : '' ?>>
+                            <span class="badge" style="background-color: <?= $statusCores[$statusItem] ?>; border-color: <?= $statusCores[$statusItem] ?>"><?= html_escape($statusItem) ?></span>
+                        </label>
+                    <?php } ?>
+                </div>
             </div>
 
             <div class="span3">
@@ -88,44 +154,16 @@ foreach ($results as $r) {
     } else {
         $dataFinal = "";
     }
-    if ($this->input->get('pesquisa') === null && is_array(json_decode($configuration['os_status_list']))) {
+    // Só aplica a "visualização padrão" das Configurações quando o usuário
+    // não marcou nenhum status no filtro e não fez pesquisa por cliente.
+    if (empty($statusSelecionados) && $this->input->get('pesquisa') === null && is_array(json_decode($configuration['os_status_list']))) {
         if (in_array($r->status, json_decode($configuration['os_status_list'])) != true) {
             continue;
         }
     }
 
-    switch ($r->status) {
-        case 'Aberto':
-            $cor = '#00cd00';
-            break;
-        case 'Em Andamento':
-            $cor = '#436eee';
-            break;
-        case 'Orçamento':
-            $cor = '#CDB380';
-            break;
-        case 'Negociação':
-            $cor = '#AEB404';
-            break;
-        case 'Cancelado':
-            $cor = '#CD0000';
-            break;
-        case 'Finalizado':
-            $cor = '#256';
-            break;
-        case 'Faturado':
-            $cor = '#B266FF';
-            break;
-        case 'Aguardando Peças':
-            $cor = '#FF7F00';
-            break;
-        case 'Aprovado':
-            $cor = '#808080';
-            break;
-        default:
-            $cor = '#E0E4CC';
-            break;
-    }
+    $cor = isset($statusCores[$r->status]) ? $statusCores[$r->status] : '#E0E4CC';
+
     $vencGarantia = '';
 
     if ($r->garantia && is_numeric($r->garantia)) {
@@ -238,5 +276,43 @@ foreach ($results as $r) {
         $(".datepicker").datepicker({
             dateFormat: 'dd/mm/yy'
         });
+
+        // ===== Filtro de status por checkbox =====
+        function atualizarLabelStatus() {
+            var marcados = $('.chk-status:checked');
+            var total = $('.chk-status').length;
+            if (marcados.length === 0) {
+                $('#label-filtro-status').text('Selecione status');
+            } else if (marcados.length === 1) {
+                $('#label-filtro-status').text(marcados.first().val());
+            } else if (marcados.length === total) {
+                $('#label-filtro-status').text('Todos os status');
+            } else {
+                $('#label-filtro-status').text(marcados.length + ' status selecionados');
+            }
+            $('#status-marcar-todos').prop('checked', marcados.length === total && total > 0);
+        }
+
+        $('#btn-filtro-status').on('click', function(e) {
+            e.stopPropagation();
+            $('#painel-status').toggleClass('aberto');
+        });
+
+        $('#painel-status').on('click', function(e) {
+            e.stopPropagation();
+        });
+
+        $(document).on('click', function() {
+            $('#painel-status').removeClass('aberto');
+        });
+
+        $('#status-marcar-todos').on('change', function() {
+            $('.chk-status').prop('checked', $(this).is(':checked'));
+            atualizarLabelStatus();
+        });
+
+        $('.chk-status').on('change', atualizarLabelStatus);
+
+        atualizarLabelStatus();
     });
 </script>
