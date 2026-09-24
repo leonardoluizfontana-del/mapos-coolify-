@@ -31,10 +31,19 @@ class Os extends MY_Controller
         $inputDe = $this->input->get('data');
         $inputAte = $this->input->get('data2');
 
+        // O filtro de status agora aceita vários valores (checkboxes: status[]).
+        // Continua aceitando o formato antigo (?status=Aberto) por compatibilidade.
+        if (! is_array($status)) {
+            $status = ($status === null || $status === '') ? [] : [$status];
+        }
+        $status = array_values(array_unique(array_filter($status, function ($item) {
+            return $item !== null && $item !== '';
+        })));
+
         if ($pesquisa) {
             $where_array['pesquisa'] = $pesquisa;
         }
-        if ($status) {
+        if (! empty($status)) {
             $where_array['status'] = $status;
         }
         if ($inputDe) {
