@@ -399,6 +399,7 @@ $totalProdutos = 0; ?>
                                 <?= printSafeHtml($result->descricaoProduto) ?>
                             </div>
                         </div>
+						</br>
                     <?php endif; ?>
 
                     <?php if ($result->defeito) : ?>
