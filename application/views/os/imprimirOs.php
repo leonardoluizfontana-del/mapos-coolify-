@@ -272,6 +272,29 @@ $totalProdutos = 0;
                     <span>Assinatura do técnico</span>
                 </div>
             </footer>
+
+            <div class="etiqueta-aparelho">
+                <div class="linha-corte"><i class="fas fa-cut"></i> corte aqui — cole no aparelho</div>
+                <div class="etiqueta-conteudo">
+                    <?php if (isset($qrCodeOs) && $qrCodeOs) : ?>
+                        <div class="etiqueta-qrcode">
+                            <img src="<?= $qrCodeOs ?>" alt="QR Code da O.S." />
+                        </div>
+                    <?php endif; ?>
+                    <div class="etiqueta-dados">
+                        <div class="etiqueta-os">OS Nº <?= str_pad($result->idOs, 4, 0, STR_PAD_LEFT) ?></div>
+                        <div><b>Cliente:</b> <?= $result->nomeCliente ?></div>
+                        <div><b>Telefone:</b> <?= $result->telefone ?: $result->celular ?></div>
+                        <div><b>Entrada:</b> <?= $result->dataInicial ? date('d/m/Y', strtotime($result->dataInicial)) : '' ?></div>
+                        <?php if ($result->defeito) : ?>
+                            <div><b>Defeito:</b> <?= printSafeHtml($result->defeito) ?></div>
+                        <?php endif; ?>
+                        <?php if ($result->descricaoProduto) : ?>
+                            <div><b>Descrição:</b> <?= printSafeHtml($result->descricaoProduto) ?></div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <?php if ($configuration['control_2vias']) : ?>
