@@ -463,10 +463,30 @@ class Os extends MY_Controller
             );
             $this->data['chaveFormatada'] = $this->formatarChave($this->data['configuration']['pix_key']);
         }
-        
+
+        $urlOs = base_url() . 'index.php/os/visualizar/' . $this->uri->segment(3);
+        $this->data['urlOs'] = $urlOs;
+        $this->data['qrCodeOs'] = $this->gerarQrCodeEtiqueta($urlOs);
+
         $this->data['imprimirAnexo'] = isset($_ENV['IMPRIMIR_ANEXOS']) ? (filter_var($_ENV['IMPRIMIR_ANEXOS'] ?? false, FILTER_VALIDATE_BOOLEAN)) : false;
 
         $this->load->view('os/imprimirOs', $this->data);
+    }
+
+    /**
+     * Gera um QR Code (data URI base64) apontando para o link informado,
+     * usado na etiqueta de identificação impressa na folha da O.S.
+     */
+    private function gerarQrCodeEtiqueta($valor)
+    {
+        try {
+            $qrCode = new \Mpdf\QrCode\QrCode($valor);
+            $output = new \Mpdf\QrCode\Output\Png();
+
+            return 'data:image/png;base64,' . base64_encode($output->output($qrCode, 200));
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     public function imprimirTermica()
