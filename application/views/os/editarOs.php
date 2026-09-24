@@ -116,7 +116,19 @@
                                                 } ?> value="Faturado">Faturado</option>
                                                 <option <?php if ($result->status == 'Cancelado') {
                                                     echo 'selected';
-                                                } ?> value="Cancelado">Cancelado</option>                                                          
+                                                } ?> value="Cancelado">Cancelado</option>
+                                                <option <?php if ($result->status == 'Descarte') {
+                                                    echo 'selected';
+                                                } ?> value="Descarte">Descarte</option>
+                                                <option <?php if ($result->status == 'Recusado') {
+                                                    echo 'selected';
+                                                } ?> value="Recusado">Recusado</option>
+                                                <option <?php if ($result->status == 'Recusado/Devolvido') {
+                                                    echo 'selected';
+                                                } ?> value="Recusado/Devolvido">Recusado/Devolvido</option>
+                                                <option <?php if ($result->status == 'Garantia') {
+                                                    echo 'selected';
+                                                } ?> value="Garantia">Garantia</option>                                                          
                                             </select>
                                         </div>
                                         <div class="span3">
