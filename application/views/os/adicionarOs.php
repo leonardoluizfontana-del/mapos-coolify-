@@ -53,6 +53,10 @@
                                                 <option value="Finalizado">Finalizado</option>
                                                 <option value="Faturado">Faturado</option>
                                                 <option value="Cancelado">Cancelado</option>
+                                                <option value="Descarte">Descarte</option>
+                                                <option value="Recusado">Recusado</option>
+                                                <option value="Recusado/Devolvido">Recusado/Devolvido</option>
+                                                <option value="Garantia">Garantia</option>
                                             </select>
                                         </div>
                                         <div class="span3">
