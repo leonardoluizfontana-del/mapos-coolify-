@@ -132,6 +132,10 @@
                                 <option value="Cancelado">Cancelado</option>
                                 <option value="Aguardando Peças">Aguardando Peças</option>
                                 <option value="Aprovado">Aprovado</option>
+                                <option value="Descarte">Descarte</option>
+                                <option value="Recusado">Recusado</option>
+                                <option value="Recusado/Devolvido">Recusado/Devolvido</option>
+                                <option value="Garantia">Garantia</option>
                             </select>
                             <button type="button" class="btn-xs" id="btn-calendar"><i class="bx bx-search iconX2"></i></button>
                         </form>
