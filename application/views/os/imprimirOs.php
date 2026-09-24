@@ -14,7 +14,7 @@ $totalProdutos = 0;
 </head>
 <body>
     <div class="main-page">
-        <div class="sub-page">
+        <div class="sub-page viaCliente">
             <header>
                 <?php if ($emitente == null) : ?>
                     <div class="alert alert-danger" role="alert">
@@ -281,18 +281,20 @@ $totalProdutos = 0;
                             <img src="<?= $qrCodeOs ?>" alt="QR Code da O.S." />
                         </div>
                     <?php endif; ?>
-                    <div class="etiqueta-dados">
-                        <div class="etiqueta-os">OS Nº <?= str_pad($result->idOs, 4, 0, STR_PAD_LEFT) ?></div>
-                        <div><b>Cliente:</b> <?= $result->nomeCliente ?></div>
-                        <div><b>Telefone:</b> <?= $result->telefone ?: $result->celular ?></div>
-                        <div><b>Entrada:</b> <?= $result->dataInicial ? date('d/m/Y', strtotime($result->dataInicial)) : '' ?></div>
-                        <?php if ($result->defeito) : ?>
-                            <div><b>Defeito:</b> <?= printSafeHtml($result->defeito) ?></div>
-                        <?php endif; ?>
-                        <?php if ($result->descricaoProduto) : ?>
-                            <div><b>Descrição:</b> <?= printSafeHtml($result->descricaoProduto) ?></div>
-                        <?php endif; ?>
+                    <div class="etiqueta-linha">
+                        <span>OS Nº <?= str_pad($result->idOs, 4, 0, STR_PAD_LEFT) ?></span>
+                        <span><b>Entrada:</b> <?= $result->dataInicial ? date('d/m/Y', strtotime($result->dataInicial)) : '' ?></span>
                     </div>
+                    <div class="etiqueta-linha">
+                        <span><b>Cliente:</b> <?= $result->nomeCliente ?></span>
+                        <span><b>Telefone:</b> <?= $result->telefone ?: $result->celular ?></span>
+                    </div>
+                    <?php if ($result->defeito) : ?>
+                        <div class="etiqueta-linha-full"><b>Defeito:</b> <?= printSafeHtml($result->defeito) ?></div>
+                    <?php endif; ?>
+                    <?php if ($result->descricaoProduto) : ?>
+                        <div class="etiqueta-linha-full"><b>Descrição:</b> <?= printSafeHtml($result->descricaoProduto) ?></div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
