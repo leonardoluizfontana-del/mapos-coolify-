@@ -227,8 +227,14 @@ footer .vendedor {
     margin: 5px;
 }
 
+.viaCliente {
+    min-height: 275mm;
+}
+
 .etiqueta-aparelho {
-    margin-top: 15mm;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 10mm;
     page-break-inside: avoid;
 }
 
@@ -237,42 +243,39 @@ footer .vendedor {
     text-align: center;
     border-top: 1px dashed #999;
     color: #777;
-    font-size: 11px;
-    padding-top: 4px;
+    font-size: 10px;
+    padding-top: 3px;
     margin-bottom: 6px;
 }
 
 .etiqueta-aparelho .etiqueta-conteudo {
-    display: flex;
-    align-items: center;
     border: 1px solid #cdcdcd;
     border-radius: 4px;
-    padding: 8px 12px;
-    gap: 12px;
+    padding: 8px 10px;
 }
 
 .etiqueta-aparelho .etiqueta-qrcode {
-    flex: 0 0 auto;
     display: flex;
-    align-items: center;
     justify-content: center;
+    margin-bottom: 6px;
 }
 
 .etiqueta-aparelho .etiqueta-qrcode img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 }
 
-.etiqueta-aparelho .etiqueta-dados {
-    flex: 1;
-    line-height: 18px;
+.etiqueta-aparelho .etiqueta-linha {
+    display: flex;
+    justify-content: space-between;
     font-size: 11px;
+    line-height: 15px;
 }
 
-.etiqueta-aparelho .etiqueta-os {
-    font-weight: bold;
-    font-size: 15px;
-    margin-bottom: 3px;
+.etiqueta-aparelho .etiqueta-linha-full {
+    font-size: 11px;
+    line-height: 15px;
+    margin-top: 3px;
 }
 
 @page {
