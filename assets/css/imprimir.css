@@ -227,6 +227,54 @@ footer .vendedor {
     margin: 5px;
 }
 
+.etiqueta-aparelho {
+    margin-top: 15mm;
+    page-break-inside: avoid;
+}
+
+.etiqueta-aparelho .linha-corte {
+    width: 100%;
+    text-align: center;
+    border-top: 1px dashed #999;
+    color: #777;
+    font-size: 11px;
+    padding-top: 4px;
+    margin-bottom: 6px;
+}
+
+.etiqueta-aparelho .etiqueta-conteudo {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cdcdcd;
+    border-radius: 4px;
+    padding: 8px 12px;
+    gap: 12px;
+}
+
+.etiqueta-aparelho .etiqueta-qrcode {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.etiqueta-aparelho .etiqueta-qrcode img {
+    width: 100px;
+    height: 100px;
+}
+
+.etiqueta-aparelho .etiqueta-dados {
+    flex: 1;
+    line-height: 18px;
+    font-size: 11px;
+}
+
+.etiqueta-aparelho .etiqueta-os {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
 @page {
     size: auto;
     margin: 0.5cm;
